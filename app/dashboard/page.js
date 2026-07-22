@@ -81,7 +81,8 @@ export default function Dashboard() {
     setActionError("");
 
     try {
-      const res = await fetch("http://localhost:5000/api/property?limit=1000");
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+      const res = await fetch(`${apiUrl}/property?limit=1000`);
       if (!res.ok) throw new Error("Failed to load listings catalog.");
       const data = await res.json();
       if (data.success && data.properties) {

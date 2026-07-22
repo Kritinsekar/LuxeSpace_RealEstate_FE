@@ -47,7 +47,8 @@ function SearchResults() {
         queryParams.set("page", page);
         queryParams.set("limit", "9");
 
-        const res = await fetch(`http://localhost:5000/api/property?${queryParams.toString()}`);
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+        const res = await fetch(`${apiUrl}/property?${queryParams.toString()}`);
         if (!res.ok) {
           throw new Error("Failed to fetch listings");
         }

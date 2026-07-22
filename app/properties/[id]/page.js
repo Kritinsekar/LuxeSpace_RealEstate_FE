@@ -7,7 +7,8 @@ import { getMockPropertyById } from "../../../utils/mockData";
 export async function generateMetadata({ params }) {
   const { id } = await params;
   try {
-    const res = await fetch(`http://localhost:5000/api/property/${id}`);
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+    const res = await fetch(`${apiUrl}/property/${id}`);
     const data = await res.json();
     let prop = null;
     if (data.success && data.property) {
@@ -48,7 +49,8 @@ export async function generateMetadata({ params }) {
 
 async function getProperty(id) {
   try {
-    const res = await fetch(`http://localhost:5000/api/property/${id}`, {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+    const res = await fetch(`${apiUrl}/property/${id}`, {
       cache: "no-store", // SSR style fetch
     });
     if (!res.ok) {

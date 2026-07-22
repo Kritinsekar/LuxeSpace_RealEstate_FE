@@ -14,7 +14,8 @@ export default function Home() {
   useEffect(() => {
     async function fetchLatestProperties() {
       try {
-        const res = await fetch("http://localhost:5000/api/property?limit=6");
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+        const res = await fetch(`${apiUrl}/property?limit=6`);
         if (!res.ok) {
           throw new Error("Failed to fetch listings");
         }

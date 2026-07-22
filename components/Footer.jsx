@@ -5,6 +5,10 @@ import Link from "next/link";
 import { Mail, Phone, MapPin, Github } from "lucide-react";
 
 export default function Footer() {
+  const apiDocsUrl = (process.env.NEXT_PUBLIC_API_URL 
+    ? process.env.NEXT_PUBLIC_API_URL.replace("/api", "") 
+    : "http://localhost:5000") + "/api-docs";
+
   return (
     <footer className="bg-slate-950 text-slate-400 border-t border-slate-900 mt-auto">
       <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
@@ -68,7 +72,7 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <a
-                href="http://localhost:5000/api-docs"
+                href={apiDocsUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="text-xs bg-slate-900 border border-slate-800 text-emerald-400 px-3 py-1.5 rounded hover:bg-slate-800 transition-all font-mono"
